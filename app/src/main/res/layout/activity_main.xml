@@ -20,8 +20,6 @@
             app:ripple="@color/colorAccent"
             android:drawablePadding="@dimen/general_all"
             app:corners="4dp"
-            android:drawableStart="@drawable/cancel"
-            android:drawableLeft="@drawable/cancel"
             android:theme="@style/ButtonTheme"
             android:text="@string/Lorem_ipsum"/>
     <View
@@ -37,8 +35,6 @@
             app:corners="4dp"
             app:strokeColor="@color/basic_black"
             app:strokeWidth="2dp"
-            android:drawableStart="@drawable/cancel"
-            android:drawableLeft="@drawable/cancel"
             android:theme="@style/ButtonTheme"
             android:text="@string/Lorem_ipsum"/>
     <View
