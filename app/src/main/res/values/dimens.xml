@@ -1,0 +1,13 @@
+<resources>
+	<dimen name="general_all">16dp</dimen>
+	
+	<dimen name="general_all_half">8dp</dimen>
+	<dimen name="general_all_half_less">6dp</dimen>
+	<dimen name="general_all_half_half">4dp</dimen>
+	
+	<dimen name="general_all_more">24dp</dimen>
+	<dimen name="general_all_double">32dp</dimen>
+	<dimen name="general_all_double_more">48dp</dimen>
+	<dimen name="general_all_double_double">64dp</dimen>
+	<dimen name="general_all_double_double_double">128dp</dimen>
+</resources>

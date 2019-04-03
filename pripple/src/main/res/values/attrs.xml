@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<declare-styleable name="Rippleable">
+		<attr name="normal" format="color|reference"/>
+		<attr name="ripple" format="color|reference"/>
+		<attr name="corners" format="dimension|reference"/>
+		<attr name="strokeColor" format="color|reference"/>
+		<attr name="strokeWidth" format="dimension|reference"/>
+	</declare-styleable>
+	<declare-styleable name="RippleButton">
+		<attr name="normal"/>
+		<attr name="ripple"/>
+		<attr name="corners"/>
+		<attr name="strokeColor"/>
+		<attr name="strokeWidth"/>
+	</declare-styleable>
+	<declare-styleable name="RippleLinearLayout">
+		<attr name="normal"/>
+		<attr name="ripple"/>
+		<attr name="corners"/>
+		<attr name="strokeColor"/>
+		<attr name="strokeWidth"/>
+	</declare-styleable>
+	<declare-styleable name="RippleRelativeLayout">
+		<attr name="normal"/>
+		<attr name="ripple"/>
+		<attr name="corners"/>
+		<attr name="strokeColor"/>
+		<attr name="strokeWidth"/>
+	</declare-styleable>
+</resources>
