@@ -14,7 +14,7 @@ app:strokeWidth -> stroke width
 
 ## Examples
 
-All this views use the same theme `@style/ButtonTheme`:
+All this examples use the same theme `@style/ButtonTheme`:
 ```xml
     <style name="ButtonTheme" parent="@android:style/Widget.TextView">
         <item name="android:paddingRight">@dimen/general_all</item>
