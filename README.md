@@ -13,6 +13,9 @@ app:strokeColor -> stroke color
 app:strokeWidth -> stroke width
 
 ## Examples
+![pripple_showcase1](https://github.com/inlacou/PRipple/blob/master/pripple_showcase1.gif)
+
+(Two Textview, two LinearLayout, and the last one is a button made with drawables!)
 
 All this examples use the same theme `@style/ButtonTheme`:
 ```xml
