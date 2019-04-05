@@ -47,8 +47,6 @@
             app:normal="@color/basic_white"
             app:ripple="@color/basic_grey"
             app:corners="4dp"
-            android:paddingTop="0dp"
-            android:paddingBottom="0dp"
             android:gravity="center"
             android:theme="@style/ButtonTheme">
         <TextView
@@ -57,6 +55,7 @@
                 android:drawableStart="@drawable/cancel"
                 android:drawableLeft="@drawable/cancel"
                 android:drawablePadding="@dimen/general_all"
+                android:padding="0dp"
                 android:text="@string/Lorem_ipsum"/>
     </com.inlacou.pripple.RippleLinearLayout>
     <View
@@ -71,8 +70,6 @@
             app:corners="4dp"
             app:strokeColor="@color/basic_black"
             app:strokeWidth="2dp"
-            android:paddingTop="0dp"
-            android:paddingBottom="0dp"
             android:gravity="center"
             android:theme="@style/ButtonTheme">
         <TextView
@@ -81,6 +78,7 @@
                 android:drawableStart="@drawable/cancel"
                 android:drawableLeft="@drawable/cancel"
                 android:drawablePadding="@dimen/general_all"
+                android:padding="0dp"
                 android:text="@string/Lorem_ipsum"/>
     </com.inlacou.pripple.RippleLinearLayout>
     <View
