@@ -19,7 +19,7 @@
             app:normal="@color/colorPrimary"
             app:ripple="@color/colorAccent"
             android:drawablePadding="@dimen/general_all"
-            app:corners="4dp"
+            app:corners="32dp"
             android:theme="@style/ButtonTheme"
             android:text="@string/Lorem_ipsum"/>
     <View
@@ -32,7 +32,7 @@
             app:normal="@color/colorPrimary"
             app:ripple="@color/colorAccent"
             android:drawablePadding="@dimen/general_all"
-            app:corners="4dp"
+            app:corners="32dp"
             app:strokeColor="@color/basic_black"
             app:strokeWidth="2dp"
             android:theme="@style/ButtonTheme"

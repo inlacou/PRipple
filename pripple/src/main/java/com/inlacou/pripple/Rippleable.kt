@@ -53,7 +53,7 @@ interface Rippleable {
 		backgroundDrawable.cornerRadius = corners
 
 		strokeColor?.let {
-			backgroundDrawable.cornerRadius = corners/2 // If the inner corner is the same size as the outer corner, it feels sooooo strange
+			backgroundDrawable.cornerRadius = corners
 			backgroundDrawable.setStroke(strokeWidth, strokeColor)
 		}
 
