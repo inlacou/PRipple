@@ -15,17 +15,17 @@ interface Rippleable {
 					getColorDrawableFromColor(normalColor, corners, strokeColor, strokeWidth),
 					null)
 		} else {
-			val stateListDrawable = StateListDrawable()
-			stateListDrawable.addState(
+			StateListDrawable().apply {
+				addState(
 					intArrayOf(android.R.attr.state_pressed),
 					getColorDrawableFromColor(pressedColor, corners, strokeColor, strokeWidth))
-			stateListDrawable.addState(
+				addState(
 					intArrayOf(android.R.attr.state_focused),
 					getColorDrawableFromColor(pressedColor, corners, strokeColor, strokeWidth))
-			stateListDrawable.addState(
+				addState(
 					intArrayOf(),
 					getColorDrawableFromColor(normalColor, corners, strokeColor, strokeWidth))
-			return stateListDrawable
+			}
 		}
 	}
 
