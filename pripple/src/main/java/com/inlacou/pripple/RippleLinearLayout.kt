@@ -49,9 +49,7 @@ open class RippleLinearLayout: LinearLayout, Rippleable {
 
 	private fun setBack() {
 		normalColor?.let { normalColor ->
-			rippleColor?.let { pressedColor ->
-				background = getPressedColorRippleDrawable(normalColor, pressedColor, corners, strokeColor, strokeWidth)
-			}
+				background = getPressedColorRippleDrawable(normalColor, rippleColor, corners, strokeColor, strokeWidth)
 		}
 		setClickableOverChilds()
 	}

@@ -8,7 +8,8 @@ import android.graphics.drawable.Drawable
 
 interface Rippleable {
 
-	fun getPressedColorRippleDrawable(normalColor: Int, pressedColor: Int, corners: Float, strokeColor: Int?, strokeWidth: Int): Drawable {
+	fun getPressedColorRippleDrawable(normalColor: Int, pressedColor: Int? = null, corners: Float, strokeColor: Int?, strokeWidth: Int): Drawable {
+		val pressedColor = pressedColor ?: normalColor
 		return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			RippleDrawable(
 					getPressedColorSelector(normalColor, pressedColor),
