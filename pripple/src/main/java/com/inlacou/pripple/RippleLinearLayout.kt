@@ -16,13 +16,16 @@ class RippleLinearLayout: LinearLayout, Rippleable {
 				setBack()
 			}
 		}
-	var pressedColor: Int? = null
+	var rippleColor: Int? = null
 		set(value) {
 			if(value!=null) {
 				field = value
 				setBack()
 			}
 		}
+	/**
+	 * In px
+	 */
 	var corners: Float = 4.dpToPx().toFloat()
 		set(value) {
 			field = value
@@ -35,6 +38,9 @@ class RippleLinearLayout: LinearLayout, Rippleable {
 				setBack()
 			}
 		}
+	/**
+	 * In px
+	 */
 	var strokeWidth: Int = 2.dpToPx()
 		set(value) {
 			field = value
@@ -43,7 +49,7 @@ class RippleLinearLayout: LinearLayout, Rippleable {
 
 	private fun setBack() {
 		normalColor?.let { normalColor ->
-			pressedColor?.let { pressedColor ->
+			rippleColor?.let { pressedColor ->
 				background = getPressedColorRippleDrawable(normalColor, pressedColor, corners, strokeColor, strokeWidth)
 			}
 		}
@@ -69,7 +75,7 @@ class RippleLinearLayout: LinearLayout, Rippleable {
 				normalColor = ta.getColor(R.styleable.RippleLinearLayout_normal, -1)
 			}
 			if (ta.hasValue(R.styleable.RippleLinearLayout_ripple)) {
-				pressedColor = ta.getColor(R.styleable.RippleLinearLayout_ripple, -1)
+				rippleColor = ta.getColor(R.styleable.RippleLinearLayout_ripple, -1)
 			}
 			if (ta.hasValue(R.styleable.RippleLinearLayout_corners)) {
 				corners = ta.getDimension(R.styleable.RippleLinearLayout_corners, 4.dpToPx().toFloat())

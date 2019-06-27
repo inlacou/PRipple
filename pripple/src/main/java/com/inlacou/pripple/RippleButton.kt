@@ -16,13 +16,15 @@ class RippleButton: TextView, Rippleable {
 				setBack()
 			}
 		}
-	var pressedColor: Int? = null
+	var rippleColor: Int? = null
 		set(value) {
 			if(value!=null) {
 				field = value
 				setBack()
 			}
-		}
+		}/**
+	 * In px
+	 */
 	var corners: Float = 4.dpToPx().toFloat()
 		set(value) {
 			field = value
@@ -34,7 +36,9 @@ class RippleButton: TextView, Rippleable {
 				field = value
 				setBack()
 			}
-		}
+		}/**
+	 * In px
+	 */
 	var strokeWidth: Int = 2.dpToPx()
 		set(value) {
 			field = value
@@ -43,7 +47,7 @@ class RippleButton: TextView, Rippleable {
 
 	private fun setBack() {
 		normalColor?.let { normalColor ->
-			pressedColor?.let { pressedColor ->
+			rippleColor?.let { pressedColor ->
 				background = getPressedColorRippleDrawable(normalColor, pressedColor, corners, strokeColor, strokeWidth)
 			}
 		}
@@ -61,7 +65,7 @@ class RippleButton: TextView, Rippleable {
 				normalColor = ta.getColor(R.styleable.RippleButton_normal, -1)
 			}
 			if (ta.hasValue(R.styleable.RippleButton_ripple)) {
-				pressedColor = ta.getColor(R.styleable.RippleButton_ripple, -1)
+				rippleColor = ta.getColor(R.styleable.RippleButton_ripple, -1)
 			}
 			if (ta.hasValue(R.styleable.RippleButton_corners)) {
 				corners = ta.getDimension(R.styleable.RippleButton_corners, 4.dpToPx().toFloat())

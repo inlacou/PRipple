@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
 
-class RippleRelativeLayout: RelativeLayout, Rippleable {
+open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	constructor(context: Context) : super(context)
 	constructor(context: Context, attrSet: AttributeSet) : super(context, attrSet) { readAttrs(attrSet) }
 	constructor(context: Context, attrSet: AttributeSet, arg: Int) : super(context, attrSet, arg) { readAttrs(attrSet) }
@@ -16,13 +16,16 @@ class RippleRelativeLayout: RelativeLayout, Rippleable {
 				setBack()
 			}
 		}
-	var pressedColor: Int? = null
+	var rippleColor: Int? = null
 		set(value) {
 			if(value!=null) {
 				field = value
 				setBack()
 			}
 		}
+	/**
+	 * In px
+	 */
 	var corners: Float = 4.dpToPx().toFloat()
 		set(value) {
 			field = value
@@ -35,6 +38,9 @@ class RippleRelativeLayout: RelativeLayout, Rippleable {
 				setBack()
 			}
 		}
+	/**
+	 * In px
+	 */
 	var strokeWidth: Int = 2.dpToPx()
 		set(value) {
 			field = value
@@ -43,14 +49,14 @@ class RippleRelativeLayout: RelativeLayout, Rippleable {
 
 	private fun setBack() {
 		normalColor?.let { normalColor ->
-			pressedColor?.let { pressedColor ->
+			rippleColor?.let { pressedColor ->
 				background = getPressedColorRippleDrawable(normalColor, pressedColor, corners, strokeColor, strokeWidth)
 			}
 		}
 		setClickableOverChilds()
 	}
 
-	fun setClickableOverChilds(){
+	private fun setClickableOverChilds(){
 		(0 .. childCount)
 				.map { getChildAt(it) }
 				.filter { it!=null }
@@ -69,7 +75,7 @@ class RippleRelativeLayout: RelativeLayout, Rippleable {
 				normalColor = ta.getColor(R.styleable.RippleRelativeLayout_normal, -1)
 			}
 			if (ta.hasValue(R.styleable.RippleRelativeLayout_ripple)) {
-				pressedColor = ta.getColor(R.styleable.RippleRelativeLayout_ripple, -1)
+				rippleColor = ta.getColor(R.styleable.RippleRelativeLayout_ripple, -1)
 			}
 			if (ta.hasValue(R.styleable.RippleRelativeLayout_corners)) {
 				corners = ta.getDimension(R.styleable.RippleRelativeLayout_corners, 4.dpToPx().toFloat())
