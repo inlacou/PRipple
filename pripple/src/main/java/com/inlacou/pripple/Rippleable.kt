@@ -51,7 +51,6 @@ interface Rippleable {
 		backgroundDrawable.cornerRadius = corners
 
 		strokeColor?.let {
-			backgroundDrawable.cornerRadius = corners
 			backgroundDrawable.setStroke(strokeWidth, strokeColor)
 		}
 
