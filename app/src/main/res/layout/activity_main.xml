@@ -98,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:normal="@color/basic_white"
-                app:ripple="@color/basic_grey"
+                app:ripple="@color/basic_red"
                 app:corners="4dp"
                 app:strokeColor="@color/basic_black"
                 app:strokeWidth="2dp"
@@ -123,6 +123,8 @@
                 android:clickable="true"
                 app:normal="@color/basic_red"
                 app:ripple="@color/basic_red_dark"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/basic_black"
                 app:corners="500dp">
             <TextView
                     android:layout_width="match_parent"
