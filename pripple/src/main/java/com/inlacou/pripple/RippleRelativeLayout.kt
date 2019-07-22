@@ -26,7 +26,39 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	/**
 	 * In px
 	 */
-	var corners: Float = 4.dpToPx().toFloat()
+	var corners: Float? = null
+		set(value) {
+			field = value
+			setBack()
+		}
+	/**
+	 * In px
+	 */
+	var cornerTopLeft: Float = 0f
+		set(value) {
+			field = value
+			setBack()
+		}
+	/**
+	 * In px
+	 */
+	var cornerTopRight: Float = 0f
+		set(value) {
+			field = value
+			setBack()
+		}
+	/**
+	 * In px
+	 */
+	var cornerBottomLeft: Float = 0f
+		set(value) {
+			field = value
+			setBack()
+		}
+	/**
+	 * In px
+	 */
+	var cornerBottomRight: Float = 0f
 		set(value) {
 			field = value
 			setBack()
@@ -49,7 +81,10 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 
 	private fun setBack() {
 		normalColor?.let { normalColor ->
-			background = getPressedColorRippleDrawable(normalColor, rippleColor, corners, strokeColor, strokeWidth)
+			background = getPressedColorRippleDrawable(normalColor, rippleColor,
+				floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
+					corners ?: cornerBottomLeft, corners ?: cornerBottomLeft, corners ?: cornerBottomRight, corners ?: cornerBottomRight),
+				strokeColor, strokeWidth)
 		}
 		setClickableOverChilds()
 	}
@@ -75,8 +110,21 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 			if (ta.hasValue(R.styleable.RippleRelativeLayout_ripple)) {
 				rippleColor = ta.getColor(R.styleable.RippleRelativeLayout_ripple, -1)
 			}
-			if (ta.hasValue(R.styleable.RippleRelativeLayout_corners)) {
-				corners = ta.getDimension(R.styleable.RippleRelativeLayout_corners, 4.dpToPx().toFloat())
+			if (ta.hasValue(R.styleable.RippleLinearLayout_corners)) {
+				val aux = ta.getDimension(R.styleable.RippleLinearLayout_corners, -10f)
+				if(aux > -1) corners = aux
+			}
+			if (ta.hasValue(R.styleable.RippleLinearLayout_cornerTopLeft)) {
+				cornerTopLeft = ta.getDimension(R.styleable.RippleLinearLayout_cornerTopLeft, 0f)
+			}
+			if (ta.hasValue(R.styleable.RippleLinearLayout_cornerTopRight)) {
+				cornerTopRight = ta.getDimension(R.styleable.RippleLinearLayout_cornerTopRight, 0f)
+			}
+			if (ta.hasValue(R.styleable.RippleLinearLayout_cornerBottomLeft)) {
+				cornerBottomLeft = ta.getDimension(R.styleable.RippleLinearLayout_cornerBottomLeft, 0f)
+			}
+			if (ta.hasValue(R.styleable.RippleLinearLayout_cornerBottomRight)) {
+				cornerBottomRight = ta.getDimension(R.styleable.RippleLinearLayout_cornerBottomRight, 0f)
 			}
 			if (ta.hasValue(R.styleable.RippleRelativeLayout_strokeColor)) {
 				strokeColor = ta.getColor(R.styleable.RippleRelativeLayout_strokeColor, -1)

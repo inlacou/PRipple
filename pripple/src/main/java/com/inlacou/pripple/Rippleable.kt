@@ -5,10 +5,11 @@ import android.content.res.Resources
 import android.graphics.drawable.*
 import android.os.Build
 import android.graphics.drawable.Drawable
+import android.util.Log
 
 interface Rippleable {
 
-	fun getPressedColorRippleDrawable(normalColor: Int, pressedColor: Int? = null, corners: Float, strokeColor: Int?, strokeWidth: Int): Drawable {
+	fun getPressedColorRippleDrawable(normalColor: Int, pressedColor: Int? = null, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
 		val pressedColor = pressedColor ?: normalColor
 		return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			RippleDrawable(
@@ -45,10 +46,15 @@ interface Rippleable {
 		)
 	}
 
-	private fun getColorDrawableFromColor(color: Int, corners: Float, strokeColor: Int?, strokeWidth: Int): Drawable {
+	private fun getColorDrawableFromColor(color: Int, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
 		val backgroundDrawable = GradientDrawable()
 		backgroundDrawable.setColor(color)
-		backgroundDrawable.cornerRadius = corners
+		/*
+		 * Specify radii for each of the 4 corners. For each corner, the array contains 2 values, [X_radius, Y_radius].
+		 * The corners are ordered top-left, top-right, bottom-right, bottom-left.
+		 * This property is honored only when the shape is of type RECTANGLE.
+		 */
+		backgroundDrawable.cornerRadii = corners
 
 		strokeColor.let {
 			if(it!=null) backgroundDrawable.setStroke(strokeWidth, it)

@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 app:normal="@color/basic_white"
                 app:ripple="@color/basic_red"
-                app:corners="4dp"
+                app:cornerTopRight="10dp"
                 app:strokeColor="@color/basic_black"
                 app:strokeWidth="2dp"
                 android:gravity="center"
@@ -111,7 +111,7 @@
                     android:drawableLeft="@drawable/cancel"
                     android:drawablePadding="@dimen/general_all"
                     android:padding="0dp"
-                    android:text="Low corner - stroke"/>
+                    android:text="One corner - stroke"/>
         </com.inlacou.pripple.RippleLinearLayout>
         <View
                 android:layout_width="match_parent"
