@@ -8,7 +8,11 @@ Features various (could add more) views with ripple effects. They are like the b
 
 * *app:normal* -> normal unclicked button color
 * *app:ripple* -> ripple effect color
-* *app:corners* -> corner radius
+* *app:cornerTopLeft* -> top left corner radius
+* *app:cornerTopRight* -> top right corner radius
+* *app:cornerBottomLeft* -> bottom left corner radius
+* *app:cornerBottomRight* -> bottom right corner radius
+* *app:corners* -> corner radius (overrides individual ones)
 * *app:strokeColor* -> stroke color
 * *app:strokeWidth* -> stroke width
 
