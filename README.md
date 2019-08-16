@@ -6,11 +6,11 @@ This library was created to make clickable buttons (or other button-like surface
 
 Features various (could add more) views with ripple effects. They are like the base view but add some extra params:
 
-app:normal -> normal unclicked button color
-app:ripple -> ripple effect color
-app:corners -> corner radius
-app:strokeColor -> stroke color
-app:strokeWidth -> stroke width
+* *app:normal* -> normal unclicked button color
+* *app:ripple* -> ripple effect color
+* *app:corners* -> corner radius
+* *app:strokeColor* -> stroke color
+* *app:strokeWidth* -> stroke width
 
 ## Examples
 ![pripple_showcase1](https://github.com/inlacou/PRipple/blob/master/pripple_showcase1.gif)
