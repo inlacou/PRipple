@@ -82,7 +82,7 @@ open class RippleButton: TextView, Rippleable {
 		normalColor?.let { normalColor ->
 			background = getPressedColorRippleDrawable(normalColor, rippleColor,
 				floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
-					corners ?: cornerBottomLeft, corners ?: cornerBottomLeft, corners ?: cornerBottomRight, corners ?: cornerBottomRight),
+					corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
 				strokeColor, strokeWidth)
 		}
 	}
