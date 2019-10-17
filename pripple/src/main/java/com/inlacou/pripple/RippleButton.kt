@@ -79,7 +79,7 @@ open class RippleButton: TextView, Rippleable {
 			setBackground()
 		}
 
-	private fun setBackground(gradientDrawable: GradientDrawable) {
+	fun setBackground(gradientDrawable: GradientDrawable) {
 		normalColor?.let { normalColor ->
 			background = getRippleDrawable(gradientDrawable, normalColor, rippleColor,
 				floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
@@ -88,7 +88,7 @@ open class RippleButton: TextView, Rippleable {
 		}
 	}
 
-	private fun setBackground(colors: List<Int>, orientation: GradientDrawable.Orientation) {
+	fun setBackground(colors: List<Int>, orientation: GradientDrawable.Orientation) {
 		background = getRippleDrawable(colors, orientation, rippleColor,
 			floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
 				corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
