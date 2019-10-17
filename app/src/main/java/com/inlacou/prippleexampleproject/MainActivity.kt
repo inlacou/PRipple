@@ -1,6 +1,5 @@
 package com.inlacou.prippleexampleproject
 
-import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,9 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        biggerCircularButton?.setOnClickListener {
-            rbutton_gradient.setBackground(listOf(getColorCompat(R.color.basic_white), getColorCompat(R.color.basic_blue)), GradientDrawable.Orientation.TOP_BOTTOM)
-        }
+        biggerCircularButton?.setOnClickListener {}
         rbutton_gradient?.setOnClickListener {  }
     }
 

@@ -24,6 +24,20 @@ open class RippleLinearLayout: LinearLayout, Rippleable {
 				setBackground()
 			}
 		}
+	var gradientColors: List<Int>? = null
+		set(value) {
+			if(value!=null) {
+				field = value
+				setBackground()
+			}
+		}
+	var gradientOrientation: GradientDrawable.Orientation? = null
+		set(value) {
+			if(value!=null) {
+				field = value
+				setBackground()
+			}
+		}
 	/**
 	 * In px
 	 */
@@ -80,6 +94,9 @@ open class RippleLinearLayout: LinearLayout, Rippleable {
 			setBackground()
 		}
 
+	/**
+	 * Extreme case. Use at your own risk.
+	 */
 	fun setBackground(gradientDrawable: GradientDrawable) {
 		normalColor?.let { normalColor ->
 			background = getRippleDrawable(gradientDrawable, normalColor, rippleColor,
@@ -89,19 +106,23 @@ open class RippleLinearLayout: LinearLayout, Rippleable {
 		}
 	}
 
-	fun setBackground(colors: List<Int>, orientation: GradientDrawable.Orientation) {
-		background = getRippleDrawable(colors, orientation, rippleColor,
-			floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
-				corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
-			strokeColor, strokeWidth)
-	}
-
 	private fun setBackground() {
-		normalColor?.let { normalColor ->
-			background = getRippleDrawable(normalColor, rippleColor,
-				floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
-					corners ?: cornerBottomLeft, corners ?: cornerBottomLeft, corners ?: cornerBottomRight, corners ?: cornerBottomRight),
-				strokeColor, strokeWidth)
+		normalColor.let { normalColor ->
+			gradientColors.let { gradientColors ->
+				gradientOrientation.let { gradientOrientation ->
+					if(gradientColors!=null && gradientOrientation!=null && gradientColors.isNotEmpty()) {
+						background = getRippleDrawable(gradientColors, gradientOrientation, rippleColor,
+							floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
+								corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
+							strokeColor, strokeWidth)
+					}else if(normalColor!=null) {
+						background = getRippleDrawable(normalColor, rippleColor,
+							floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
+								corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
+							strokeColor, strokeWidth)
+					}
+				}
+			}
 		}
 		setClickableOverChilds()
 	}
@@ -126,6 +147,12 @@ open class RippleLinearLayout: LinearLayout, Rippleable {
 			}
 			if (ta.hasValue(R.styleable.RippleLinearLayout_ripple)) {
 				rippleColor = ta.getColor(R.styleable.RippleLinearLayout_ripple, -1)
+			}
+			if (ta.hasValue(R.styleable.RippleLinearLayout_gradientColors)) {
+				gradientColors = ta.resources.getIntArray(ta.getResourceId(R.styleable.RippleLinearLayout_gradientColors, -1)).toList()
+			}
+			if (ta.hasValue(R.styleable.RippleLinearLayout_gradientOrientation)) {
+				gradientOrientation = GradientDrawable.Orientation.values()[ta.getInt(R.styleable.RippleLinearLayout_gradientOrientation, 0)]
 			}
 			if (ta.hasValue(R.styleable.RippleLinearLayout_corners)) {
 				val aux = ta.getDimension(R.styleable.RippleLinearLayout_corners, -10f)

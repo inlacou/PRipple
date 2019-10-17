@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Basic colors -->
+    <!-- Basic gradientColors -->
     <color name="basic_grey_light">#DDD</color>
     <color name="basic_grey">#AAAAAA</color>
     <color name="basic_red">#F00</color>
@@ -20,4 +20,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <array name="colors">
+        <item>@color/basic_white</item>
+        <item>@color/basic_cyan</item>
+        <item>@color/basic_blue</item>
+    </array>
 </resources>
