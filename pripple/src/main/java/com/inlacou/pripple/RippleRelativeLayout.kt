@@ -1,6 +1,7 @@
 package com.inlacou.pripple
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.widget.RelativeLayout
 
@@ -13,14 +14,14 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 		set(value) {
 			if(value!=null) {
 				field = value
-				setBack()
+				setBackground()
 			}
 		}
 	var rippleColor: Int? = null
 		set(value) {
 			if(value!=null) {
 				field = value
-				setBack()
+				setBackground()
 			}
 		}
 	/**
@@ -29,7 +30,7 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	var corners: Float? = null
 		set(value) {
 			field = value
-			setBack()
+			setBackground()
 		}
 	/**
 	 * In px
@@ -37,7 +38,7 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	var cornerTopLeft: Float = 0f
 		set(value) {
 			field = value
-			setBack()
+			setBackground()
 		}
 	/**
 	 * In px
@@ -45,7 +46,7 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	var cornerTopRight: Float = 0f
 		set(value) {
 			field = value
-			setBack()
+			setBackground()
 		}
 	/**
 	 * In px
@@ -53,7 +54,7 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	var cornerBottomLeft: Float = 0f
 		set(value) {
 			field = value
-			setBack()
+			setBackground()
 		}
 	/**
 	 * In px
@@ -61,13 +62,13 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	var cornerBottomRight: Float = 0f
 		set(value) {
 			field = value
-			setBack()
+			setBackground()
 		}
 	var strokeColor: Int? = null
 		set(value) {
 			if(value!=null) {
 				field = value
-				setBack()
+				setBackground()
 			}
 		}
 	/**
@@ -76,12 +77,28 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	var strokeWidth: Int = 2.dpToPx()
 		set(value) {
 			field = value
-			setBack()
+			setBackground()
 		}
 
-	private fun setBack() {
+	private fun setBackground(gradientDrawable: GradientDrawable) {
 		normalColor?.let { normalColor ->
-			background = getPressedColorRippleDrawable(normalColor, rippleColor,
+			background = getRippleDrawable(gradientDrawable, normalColor, rippleColor,
+				floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
+					corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
+				strokeColor, strokeWidth)
+		}
+	}
+
+	private fun setBackground(colors: List<Int>, orientation: GradientDrawable.Orientation) {
+		background = getRippleDrawable(colors, orientation, rippleColor,
+			floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
+				corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
+			strokeColor, strokeWidth)
+	}
+
+	private fun setBackground() {
+		normalColor?.let { normalColor ->
+			background = getRippleDrawable(normalColor, rippleColor,
 				floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
 					corners ?: cornerBottomLeft, corners ?: cornerBottomLeft, corners ?: cornerBottomRight, corners ?: cornerBottomRight),
 				strokeColor, strokeWidth)
@@ -98,7 +115,7 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 
 	override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
 		super.onLayout(changed, left, top, right, bottom)
-		setBack()
+		setBackground()
 	}
 
 	protected open fun readAttrs(attrs: AttributeSet) {
