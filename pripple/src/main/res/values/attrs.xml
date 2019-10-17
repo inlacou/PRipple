@@ -10,6 +10,17 @@
 		<attr name="cornerBottomRight" format="dimension|reference"/>
 		<attr name="strokeColor" format="color|reference"/>
 		<attr name="strokeWidth" format="dimension|reference"/>
+		<attr name="gradientColors" format="reference"/>
+		<attr name="gradientOrientation" format="enum">
+			<enum name="TOP_BOTTOM" value="0"/>
+			<enum name="TR_BL" value="1"/>
+			<enum name="RIGHT_LEFT" value="2"/>
+			<enum name="BR_TL" value="3"/>
+			<enum name="BOTTOM_TOP" value="4"/>
+			<enum name="BL_TR" value="5"/>
+			<enum name="LEFT_RIGHT" value="6"/>
+			<enum name="TL_BR" value="7"/>
+		</attr>
 	</declare-styleable>
 	<declare-styleable name="RippleButton">
 		<attr name="normal"/>
@@ -21,6 +32,8 @@
 		<attr name="cornerBottomRight"/>
 		<attr name="strokeColor"/>
 		<attr name="strokeWidth"/>
+		<attr name="gradientColors"/>
+		<attr name="gradientOrientation"/>
 	</declare-styleable>
 	<declare-styleable name="RippleLinearLayout">
 		<attr name="normal"/>
@@ -32,6 +45,8 @@
 		<attr name="cornerBottomRight"/>
 		<attr name="strokeColor"/>
 		<attr name="strokeWidth"/>
+		<attr name="gradientColors"/>
+		<attr name="gradientOrientation"/>
 	</declare-styleable>
 	<declare-styleable name="RippleRelativeLayout">
 		<attr name="normal"/>
@@ -43,5 +58,7 @@
 		<attr name="cornerBottomRight"/>
 		<attr name="strokeColor"/>
 		<attr name="strokeWidth"/>
+		<attr name="gradientColors"/>
+		<attr name="gradientOrientation"/>
 	</declare-styleable>
 </resources>

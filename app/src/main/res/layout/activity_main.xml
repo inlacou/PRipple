@@ -157,5 +157,16 @@
                     android:gravity="center"
                     android:padding="@dimen/general_all"/>
         </com.inlacou.pripple.RippleRelativeLayout>
+        <com.inlacou.pripple.RippleButton
+                android:id="@+id/rbutton_gradient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/general_all"
+                android:textColor="@color/basic_white"
+                app:gradientColors="@array/colors"
+                app:gradientOrientation="BOTTOM_TOP"
+                app:ripple="@color/basic_red"
+                app:corners="@dimen/general_all"
+                android:text="GRADIENT"/>
     </LinearLayout>
 </ScrollView>
