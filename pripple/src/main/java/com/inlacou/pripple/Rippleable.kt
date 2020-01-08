@@ -190,7 +190,6 @@ interface Rippleable {
 		if(gradientType!=null) backgroundDrawable.gradientType = gradientType.ordinal
 		if(gradientRadius!=null) backgroundDrawable.gradientRadius = gradientRadius
 		if(gradientCenterX!=null && gradientCenterY!=null) backgroundDrawable.setGradientCenter(gradientCenterX, gradientCenterY)
-		//TODO https@//stackoverflow.com/questions/8481322/create-a-radial-gradient-programmatically
 
 		/*
 		 * Specify radii for each of the 4 corners. For each corner, the array contains 2 values, [X_radius, Y_radius].
@@ -208,5 +207,4 @@ interface Rippleable {
 	}
 
 	enum class GradientTypes { LINEAR_GRADIENT, RADIAL_GRADIENT, SWEEP_GRADIENT }
-	enum class GradientShapes { RECTANGLE, OVAL, LINE, RING }
 }

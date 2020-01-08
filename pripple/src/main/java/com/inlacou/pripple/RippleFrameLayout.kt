@@ -189,12 +189,20 @@ open class RippleFrameLayout: FrameLayout, Rippleable {
 		canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), paint)
 
 		paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
-		canvas.drawRoundRect(
-			RectF(0f, 0f, width.toFloat(), height.toFloat()),
-			(corners ?: 0f),
-			(corners ?: 0f),
-			paint
-		)
+
+		val path = Path()
+		path.addRoundRect(RectF(0f, 0f, width.toFloat(), height.toFloat()), floatArrayOf(
+			corners ?: cornerTopLeft,
+			corners ?: cornerTopLeft,
+			corners ?: cornerTopRight,
+			corners ?: cornerTopRight,
+			corners ?: cornerBottomRight,
+			corners ?: cornerBottomRight,
+			corners ?: cornerBottomLeft,
+			corners ?: cornerBottomLeft
+		), Path.Direction.CW)
+
+		canvas.drawPath(path, paint)
 
 		return mask
 	}
