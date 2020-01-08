@@ -11,6 +11,7 @@
             android:gravity="center_horizontal"
             android:paddingLeft="@dimen/general_all"
             android:paddingRight="@dimen/general_all"
+            android:paddingBottom="100dp"
             android:orientation="vertical">
         <View
                 android:layout_width="match_parent"
@@ -54,6 +55,11 @@
                 app:corners="4dp"
                 android:theme="@style/ButtonTheme"
                 android:text="This one tries to copy the normal button"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/general_all_double" />
+
         <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/general_all_double"/>
@@ -136,9 +142,7 @@
                     android:gravity="center"
                     android:padding="@dimen/general_all"/>
         </com.inlacou.pripple.RippleRelativeLayout>
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/general_all_double"/>
+
         <com.inlacou.pripple.RippleRelativeLayout
                 android:id="@+id/biggerCircularButton"
                 android:layout_width="200dp"
@@ -162,11 +166,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/general_all"
-                android:textColor="@color/basic_white"
                 app:gradientColors="@array/colors"
                 app:gradientOrientation="BOTTOM_TOP"
                 app:ripple="@color/basic_red"
                 app:corners="@dimen/general_all"
                 android:text="GRADIENT"/>
+        <com.inlacou.pripple.RippleButton
+                android:id="@+id/rbutton_gradient_shadow"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="@dimen/general_all"
+                android:textColor="@color/basic_white"
+                app:gradientColors="@array/colors_shadow"
+                app:gradientOrientation="BL_TR"
+                app:gradientType="RADIAL_GRADIENT"
+                app:gradientRadius="50.0"
+                app:ripple="@color/basic_red"
+                app:corners="@dimen/general_all"
+                android:text="RADIAL GRADIENT"/>
     </LinearLayout>
 </ScrollView>

@@ -42,6 +42,34 @@ open class RippleButton: TextView, Rippleable {
 				setBackground()
 			}
 		}
+	override var gradientType: Rippleable.GradientTypes? = null
+		set(value) {
+			if(value!=null) {
+				field = value
+				setBackground()
+			}
+		}
+	override var gradientRadius: Float? = null
+		set(value) {
+			if(value!=null) {
+				field = value
+				setBackground()
+			}
+		}
+	override var gradientCenterX: Float? = null
+		set(value) {
+			if(value!=null) {
+				field = value
+				setBackground()
+			}
+		}
+	override var gradientCenterY: Float? = null
+		set(value) {
+			if(value!=null) {
+				field = value
+				setBackground()
+			}
+		}
 	/**
 	 * In px
 	 */

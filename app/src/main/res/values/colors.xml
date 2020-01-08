@@ -25,4 +25,8 @@
         <item>@color/basic_cyan</item>
         <item>@color/basic_blue</item>
     </array>
+    <array name="colors_shadow">
+        <item>@color/basic_white</item>
+        <item>@color/basic_black</item>
+    </array>
 </resources>

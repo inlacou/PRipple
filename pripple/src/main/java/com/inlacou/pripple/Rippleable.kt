@@ -16,6 +16,10 @@ interface Rippleable {
 	var rippleColor: Int?
 	var gradientColors: List<Int>?
 	var gradientOrientation: GradientDrawable.Orientation?
+	var gradientType: GradientTypes?
+	var gradientRadius: Float?
+	var gradientCenterX: Float?
+	var gradientCenterY: Float?
 	var corners: Float?
 	var cornerTopLeft: Float
 	var cornerTopRight: Float
@@ -38,6 +42,27 @@ interface Rippleable {
 			}
 			if (ta.hasValue(R.styleable.Rippleable_gradientOrientation)) {
 				gradientOrientation = GradientDrawable.Orientation.values()[ta.getInt(R.styleable.Rippleable_gradientOrientation, 0)]
+			}
+			if (ta.hasValue(R.styleable.Rippleable_gradientType)) {
+				gradientType = GradientTypes.values()[ta.getInt(R.styleable.Rippleable_gradientType, 0)]
+			}
+			if (ta.hasValue(R.styleable.Rippleable_gradientRadius)) {
+				gradientRadius = ta.getFloat(R.styleable.Rippleable_gradientRadius, -1f).let {
+					if(it==-1f) null
+					else it
+				}
+			}
+			if (ta.hasValue(R.styleable.Rippleable_gradientCenterX)) {
+				gradientCenterX = ta.getFloat(R.styleable.Rippleable_gradientCenterX, -1f).let {
+					if(it==-1f) null
+					else it
+				}
+			}
+			if (ta.hasValue(R.styleable.Rippleable_gradientCenterY)) {
+				gradientCenterY = ta.getFloat(R.styleable.Rippleable_gradientCenterY, -1f).let {
+					if(it==-1f) null
+					else it
+				}
 			}
 			if (ta.hasValue(R.styleable.Rippleable_corners)) {
 				val aux = ta.getDimension(R.styleable.Rippleable_corners, -10f)
@@ -106,7 +131,7 @@ interface Rippleable {
 	}
 
 	fun getRippleDrawable(colors: List<Int>, orientation: GradientDrawable.Orientation, pressedColor: Int? = null, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
-		return buildRippleDrawable(getGradientColorDrawable(colors, orientation, corners, strokeColor, strokeWidth), pressedColor ?: colors.first(), corners, strokeColor, strokeWidth)
+		return buildRippleDrawable(getGradientColorDrawable(colors, orientation, gradientType, gradientRadius, gradientCenterX, gradientCenterY, corners, strokeColor, strokeWidth), pressedColor ?: colors.first(), corners, strokeColor, strokeWidth)
 	}
 
 	fun getRippleDrawable(gradientDrawable: GradientDrawable, normalColor: Int, pressedColor: Int? = null, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
@@ -158,8 +183,13 @@ interface Rippleable {
 		return backgroundDrawable
 	}
 
-	private fun getGradientColorDrawable(colors: List<Int>, orientation: GradientDrawable.Orientation, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
+	private fun getGradientColorDrawable(colors: List<Int>, orientation: GradientDrawable.Orientation, gradientType: GradientTypes?, gradientRadius: Float?,
+										 gradientCenterX: Float?, gradientCenterY: Float?,
+										 corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
 		val backgroundDrawable = GradientDrawable(orientation, colors.toIntArray())
+		if(gradientType!=null) backgroundDrawable.gradientType = gradientType.ordinal
+		if(gradientRadius!=null) backgroundDrawable.gradientRadius = gradientRadius
+		if(gradientCenterX!=null && gradientCenterY!=null) backgroundDrawable.setGradientCenter(gradientCenterX, gradientCenterY)
 		//TODO https@//stackoverflow.com/questions/8481322/create-a-radial-gradient-programmatically
 
 		/*
@@ -176,4 +206,7 @@ interface Rippleable {
 
 		return backgroundDrawable
 	}
+
+	enum class GradientTypes { LINEAR_GRADIENT, RADIAL_GRADIENT, SWEEP_GRADIENT }
+	enum class GradientShapes { RECTANGLE, OVAL, LINE, RING }
 }
