@@ -13,6 +13,24 @@
             android:paddingRight="@dimen/general_all"
             android:paddingBottom="100dp"
             android:orientation="vertical">
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/basic_grey">
+            <com.inlacou.pripple.RippleFrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:normal="@color/basic_green"
+                    app:ripple="@color/basic_white"
+                    android:clickable="true"
+                    app:corners="400dp">
+                <View
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:background="@color/basic_red"/>
+            </com.inlacou.pripple.RippleFrameLayout>
+        </FrameLayout>
         <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/general_all"/>

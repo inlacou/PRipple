@@ -1,10 +1,23 @@
 package com.inlacou.pripple
 
 import android.content.Context
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import android.graphics.Paint.ANTI_ALIAS_FLAG
+import android.graphics.Bitmap
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.graphics.Paint.FILTER_BITMAP_FLAG
+import android.graphics.Paint.ANTI_ALIAS_FLAG
+
+
+
+
+
+
 
 open class RippleFrameLayout: FrameLayout, Rippleable {
 	constructor(context: Context) : super(context)
@@ -146,6 +159,44 @@ open class RippleFrameLayout: FrameLayout, Rippleable {
 	override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
 		super.onLayout(changed, left, top, right, bottom)
 		setBackground()
+	}
+
+	private var maskBitmap: Bitmap? = null
+	private val paint: Paint = Paint(ANTI_ALIAS_FLAG)
+	private val maskPaint: Paint = Paint(ANTI_ALIAS_FLAG or FILTER_BITMAP_FLAG).apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
+
+	override fun draw(canvas: Canvas) {
+		val offscreenBitmap = Bitmap.createBitmap(canvas.width, canvas.height, Bitmap.Config.ARGB_8888)
+		val offscreenCanvas = Canvas(offscreenBitmap)
+
+		super.draw(offscreenCanvas)
+
+		if (maskBitmap == null) {
+			maskBitmap = createMask(canvas.width, canvas.height)
+		}
+
+		offscreenCanvas.drawBitmap(maskBitmap, 0f, 0f, maskPaint)
+		canvas.drawBitmap(offscreenBitmap, 0f, 0f, paint)
+	}
+
+	private fun createMask(width: Int, height: Int): Bitmap {
+		val mask = Bitmap.createBitmap(width, height, Bitmap.Config.ALPHA_8)
+		val canvas = Canvas(mask)
+
+		val paint = Paint(ANTI_ALIAS_FLAG)
+		paint.color = Color.WHITE
+
+		canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), paint)
+
+		paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+		canvas.drawRoundRect(
+			RectF(0f, 0f, width.toFloat(), height.toFloat()),
+			(corners ?: 0f),
+			(corners ?: 0f),
+			paint
+		)
+
+		return mask
 	}
 
 }
