@@ -1,8 +1,10 @@
 package com.inlacou.pripple
 
 import android.content.Context
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -15,6 +17,13 @@ open class RippleLinearLayout: LinearLayout, Rippleable {
 	override val viewContext: Context
 		get() = context
 
+	override var forceClipChildren: Boolean = false
+		set(value) {
+			if(value!=field) {
+				field = value
+				setBackground()
+			}
+		}
 	override var normalColor: Int? = null
 		set(value) {
 			if(value!=null) {
@@ -149,4 +158,26 @@ open class RippleLinearLayout: LinearLayout, Rippleable {
 		setBackground()
 	}
 
+	override fun setDraw(b: Boolean) {
+		setWillNotDraw(b)
+	}
+
+	override fun draw(canvas: Canvas) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && forceClipChildren && !isInEditMode) {
+			canvas.clipPath(Path().apply {
+				addRoundRect(
+					RectF(0f, 0f, width.toFloat(), height.toFloat()), floatArrayOf(
+						corners ?: cornerTopLeft,
+						corners ?: cornerTopLeft,
+						corners ?: cornerTopRight,
+						corners ?: cornerTopRight,
+						corners ?: cornerBottomRight,
+						corners ?: cornerBottomRight,
+						corners ?: cornerBottomLeft,
+						corners ?: cornerBottomLeft
+					), Path.Direction.CW)
+			})
+		}
+		super.draw(canvas)
+	}
 }

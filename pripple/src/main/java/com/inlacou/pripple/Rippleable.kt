@@ -13,6 +13,7 @@ interface Rippleable {
 
 	val viewContext: Context
 
+	var forceClipChildren: Boolean
 	var normalColor: Int?
 	var rippleColor: Int?
 	var gradientColors: List<Int>?
@@ -32,6 +33,9 @@ interface Rippleable {
 	fun readAttrs(attrs: AttributeSet) {
 		val ta = viewContext.obtainStyledAttributes(attrs, R.styleable.Rippleable, 0, 0)
 		try {
+			if (ta.hasValue(R.styleable.Rippleable_forceClipChildren)) {
+				forceClipChildren = ta.getBoolean(R.styleable.Rippleable_forceClipChildren, false)
+			}
 			if (ta.hasValue(R.styleable.Rippleable_normal)) {
 				normalColor = ta.getColor(R.styleable.Rippleable_normal, -1)
 			}
@@ -90,9 +94,11 @@ interface Rippleable {
 		} finally {
 			ta.recycle()
 		}
+		setDraw(false)
 		setBackground()
 	}
 
+	fun setDraw(b: Boolean)
 	fun setViewBackground(drawable: Drawable)
 
 	/**
@@ -208,33 +214,4 @@ interface Rippleable {
 	}
 
 	enum class GradientTypes { LINEAR_GRADIENT, RADIAL_GRADIENT, SWEEP_GRADIENT }
-
-	fun createMask(width: Int, height: Int): Bitmap {
-		val mask = Bitmap.createBitmap(width, height, Bitmap.Config.ALPHA_8)
-		val canvas = Canvas(mask)
-
-		val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-		paint.color = Color.WHITE
-
-		canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), paint)
-
-		paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
-
-		val path = Path()
-		path.addRoundRect(
-			RectF(0f, 0f, width.toFloat(), height.toFloat()), floatArrayOf(
-				corners ?: cornerTopLeft,
-				corners ?: cornerTopLeft,
-				corners ?: cornerTopRight,
-				corners ?: cornerTopRight,
-				corners ?: cornerBottomRight,
-				corners ?: cornerBottomRight,
-				corners ?: cornerBottomLeft,
-				corners ?: cornerBottomLeft
-			), Path.Direction.CW)
-
-		canvas.drawPath(path, paint)
-
-		return mask
-	}
 }
