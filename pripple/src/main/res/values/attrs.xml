@@ -21,8 +21,26 @@
 			<enum name="LEFT_RIGHT" value="6"/>
 			<enum name="TL_BR" value="7"/>
 		</attr>
+		<attr name="gradientType" format="enum">
+			<enum name="LINEAR_GRADIENT" value="0"/>
+			<enum name="RADIAL_GRADIENT" value="1"/>
+			<enum name="SWEEP_GRADIENT" value="2"/>
+		</attr>
 	</declare-styleable>
 	<declare-styleable name="RippleButton">
+		<attr name="normal"/>
+		<attr name="ripple"/>
+		<attr name="corners"/>
+		<attr name="cornerTopLeft"/>
+		<attr name="cornerTopRight"/>
+		<attr name="cornerBottomLeft"/>
+		<attr name="cornerBottomRight"/>
+		<attr name="strokeColor"/>
+		<attr name="strokeWidth"/>
+		<attr name="gradientColors"/>
+		<attr name="gradientOrientation"/>
+	</declare-styleable>
+	<declare-styleable name="RippleFrameLayout">
 		<attr name="normal"/>
 		<attr name="ripple"/>
 		<attr name="corners"/>

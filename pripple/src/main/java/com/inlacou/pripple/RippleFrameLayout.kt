@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.widget.TextView
+import android.widget.FrameLayout
 
-open class RippleButton: TextView, Rippleable {
+open class RippleFrameLayout: FrameLayout, Rippleable {
 	constructor(context: Context) : super(context)
 	constructor(context: Context, attrSet: AttributeSet) : super(context, attrSet) { readAttrs(attrSet) }
 	constructor(context: Context, attrSet: AttributeSet, arg: Int) : super(context, attrSet, arg) { readAttrs(attrSet) }
@@ -97,6 +97,19 @@ open class RippleButton: TextView, Rippleable {
 			field = value
 			setBackground()
 		}
+
+
+	private fun setClickableOverChilds() {
+		(0 .. childCount)
+				.map { getChildAt(it) }
+				.filter { it!=null }
+				.forEach { it.isClickable = false }
+	}
+
+	override fun setBackground() {
+		super<Rippleable>.setBackground()
+		setClickableOverChilds()
+	}
 
 	override fun setViewBackground(drawable: Drawable) {
 		background = drawable
