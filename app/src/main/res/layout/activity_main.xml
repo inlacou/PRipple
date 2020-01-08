@@ -23,8 +23,7 @@
                     app:normal="@color/basic_green"
                     app:ripple="@color/basic_white"
                     android:clickable="true"
-                    app:cornerTopLeft="200dp"
-                    app:cornerTopRight="200dp">
+                    app:cornerTopLeft="200dp">
                 <View
                         android:layout_width="80dp"
                         android:layout_height="80dp"

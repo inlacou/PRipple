@@ -2,6 +2,7 @@ package com.inlacou.pripple
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.*
 import android.graphics.drawable.*
 import android.os.Build
 import android.graphics.drawable.Drawable
@@ -207,4 +208,33 @@ interface Rippleable {
 	}
 
 	enum class GradientTypes { LINEAR_GRADIENT, RADIAL_GRADIENT, SWEEP_GRADIENT }
+
+	fun createMask(width: Int, height: Int): Bitmap {
+		val mask = Bitmap.createBitmap(width, height, Bitmap.Config.ALPHA_8)
+		val canvas = Canvas(mask)
+
+		val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+		paint.color = Color.WHITE
+
+		canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), paint)
+
+		paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+
+		val path = Path()
+		path.addRoundRect(
+			RectF(0f, 0f, width.toFloat(), height.toFloat()), floatArrayOf(
+				corners ?: cornerTopLeft,
+				corners ?: cornerTopLeft,
+				corners ?: cornerTopRight,
+				corners ?: cornerTopRight,
+				corners ?: cornerBottomRight,
+				corners ?: cornerBottomRight,
+				corners ?: cornerBottomLeft,
+				corners ?: cornerBottomLeft
+			), Path.Direction.CW)
+
+		canvas.drawPath(path, paint)
+
+		return mask
+	}
 }
