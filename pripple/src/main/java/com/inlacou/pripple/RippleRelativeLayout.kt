@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
 
@@ -158,24 +159,26 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 		setBackground()
 	}
 
-	private var maskBitmap: Bitmap? = null
-	private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
-	private val maskPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG).apply { xfermode = PorterDuffXfermode(
-		PorterDuff.Mode.CLEAR) }
+	override fun setDraw(b: Boolean) {
+		setWillNotDraw(b)
+	}
 
 	override fun draw(canvas: Canvas) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && forceClipChildren && !isInEditMode) {
-			val offscreenBitmap = Bitmap.createBitmap(canvas.width, canvas.height, Bitmap.Config.ARGB_8888)
-			val offscreenCanvas = Canvas(offscreenBitmap)
-
-			super.draw(offscreenCanvas)
-
-			if (maskBitmap == null) maskBitmap = createMask(canvas.width, canvas.height)
-
-			offscreenCanvas.drawBitmap(maskBitmap, 0f, 0f, maskPaint)
-			canvas.drawBitmap(offscreenBitmap, 0f, 0f, paint)
-		} else {
-			super.draw(canvas)
+			canvas.clipPath(Path().apply {
+				addRoundRect(
+					RectF(0f, 0f, width.toFloat(), height.toFloat()), floatArrayOf(
+						corners ?: cornerTopLeft,
+						corners ?: cornerTopLeft,
+						corners ?: cornerTopRight,
+						corners ?: cornerTopRight,
+						corners ?: cornerBottomRight,
+						corners ?: cornerBottomRight,
+						corners ?: cornerBottomLeft,
+						corners ?: cornerBottomLeft
+					), Path.Direction.CW)
+			})
 		}
+		super.draw(canvas)
 	}
 }
