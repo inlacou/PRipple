@@ -1,10 +1,15 @@
 package com.inlacou.pripple
 
 import android.content.Context
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import android.graphics.Paint.ANTI_ALIAS_FLAG
+import android.graphics.Bitmap
+import android.graphics.Paint.FILTER_BITMAP_FLAG
+import android.os.Build
 
 open class RippleFrameLayout: FrameLayout, Rippleable {
 	constructor(context: Context) : super(context)
@@ -127,16 +132,13 @@ open class RippleFrameLayout: FrameLayout, Rippleable {
 		}
 
 
-	private fun setClickableOverChilds() {
-		(0 .. childCount)
-				.map { getChildAt(it) }
-				.filter { it!=null }
-				.forEach { it.isClickable = false }
+	private fun setClickableOverChildren() {
+		(0..childCount).mapNotNull { getChildAt(it) }.forEach { it.isClickable = false }
 	}
 
 	override fun setBackground() {
 		super<Rippleable>.setBackground()
-		setClickableOverChilds()
+		setClickableOverChildren()
 	}
 
 	override fun setViewBackground(drawable: Drawable) {
@@ -148,4 +150,23 @@ open class RippleFrameLayout: FrameLayout, Rippleable {
 		setBackground()
 	}
 
+	private var maskBitmap: Bitmap? = null
+	private val paint: Paint = Paint(ANTI_ALIAS_FLAG)
+	private val maskPaint: Paint = Paint(ANTI_ALIAS_FLAG or FILTER_BITMAP_FLAG).apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
+
+	override fun draw(canvas: Canvas) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && clipChildren && !isInEditMode) {
+			val offscreenBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+			val offscreenCanvas = Canvas(offscreenBitmap)
+
+			super.draw(offscreenCanvas)
+
+			if (maskBitmap == null) maskBitmap = createMask(width, height)
+
+			offscreenCanvas.drawBitmap(maskBitmap, 0f, 0f, maskPaint)
+			canvas.drawBitmap(offscreenBitmap, 0f, 0f, paint)
+		} else {
+			super.draw(canvas)
+		}
+	}
 }
