@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<declare-styleable name="Rippleable">
-		<attr name="clipChildren" format="boolean"/>
+		<attr name="forceClipChildren" format="boolean"/>
 		<attr name="normal" format="color|reference"/>
 		<attr name="ripple" format="color|reference"/>
 		<attr name="corners" format="dimension|reference"/>
@@ -32,7 +32,7 @@
 		</attr>
 	</declare-styleable>
 	<declare-styleable name="RippleButton">
-		<attr name="clipChildren"/>
+		<attr name="forceClipChildren"/>
 		<attr name="normal"/>
 		<attr name="ripple"/>
 		<attr name="corners"/>
@@ -50,7 +50,7 @@
 		<attr name="gradientType"/>
 	</declare-styleable>
 	<declare-styleable name="RippleFrameLayout">
-		<attr name="clipChildren"/>
+		<attr name="forceClipChildren"/>
 		<attr name="normal"/>
 		<attr name="ripple"/>
 		<attr name="corners"/>
@@ -68,7 +68,7 @@
 		<attr name="gradientType"/>
 	</declare-styleable>
 	<declare-styleable name="RippleLinearLayout">
-		<attr name="clipChildren"/>
+		<attr name="forceClipChildren"/>
 		<attr name="normal"/>
 		<attr name="ripple"/>
 		<attr name="corners"/>
@@ -86,7 +86,7 @@
 		<attr name="gradientType"/>
 	</declare-styleable>
 	<declare-styleable name="RippleRelativeLayout">
-		<attr name="clipChildren"/>
+		<attr name="forceClipChildren"/>
 		<attr name="normal"/>
 		<attr name="ripple"/>
 		<attr name="corners"/>

@@ -17,6 +17,13 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	override val viewContext: Context
 		get() = context
 
+	override var forceClipChildren: Boolean = false
+		set(value) {
+			if(value!=field) {
+				field = value
+				setBackground()
+			}
+		}
 	override var normalColor: Int? = null
 		set(value) {
 			if(value!=null) {
@@ -157,13 +164,13 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 		PorterDuff.Mode.CLEAR) }
 
 	override fun draw(canvas: Canvas) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && clipChildren && !isInEditMode) {
-			val offscreenBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && forceClipChildren && !isInEditMode) {
+			val offscreenBitmap = Bitmap.createBitmap(canvas.width, canvas.height, Bitmap.Config.ARGB_8888)
 			val offscreenCanvas = Canvas(offscreenBitmap)
 
 			super.draw(offscreenCanvas)
 
-			if (maskBitmap == null) maskBitmap = createMask(width, height)
+			if (maskBitmap == null) maskBitmap = createMask(canvas.width, canvas.height)
 
 			offscreenCanvas.drawBitmap(maskBitmap, 0f, 0f, maskPaint)
 			canvas.drawBitmap(offscreenBitmap, 0f, 0f, paint)

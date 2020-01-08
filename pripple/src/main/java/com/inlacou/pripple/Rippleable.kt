@@ -13,6 +13,7 @@ interface Rippleable {
 
 	val viewContext: Context
 
+	var forceClipChildren: Boolean
 	var normalColor: Int?
 	var rippleColor: Int?
 	var gradientColors: List<Int>?
@@ -32,6 +33,9 @@ interface Rippleable {
 	fun readAttrs(attrs: AttributeSet) {
 		val ta = viewContext.obtainStyledAttributes(attrs, R.styleable.Rippleable, 0, 0)
 		try {
+			if (ta.hasValue(R.styleable.Rippleable_forceClipChildren)) {
+				forceClipChildren = ta.getBoolean(R.styleable.Rippleable_forceClipChildren, false)
+			}
 			if (ta.hasValue(R.styleable.Rippleable_normal)) {
 				normalColor = ta.getColor(R.styleable.Rippleable_normal, -1)
 			}

@@ -1,8 +1,10 @@
 package com.inlacou.pripple
 
 import android.content.Context
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.util.AttributeSet
 import android.widget.TextView
 
@@ -14,6 +16,13 @@ open class RippleButton: TextView, Rippleable {
 	override val viewContext: Context
 		get() = context
 
+	override var forceClipChildren: Boolean = false
+		set(value) {
+			if(value!=field) {
+				field = value
+				setBackground()
+			}
+		}
 	override var normalColor: Int? = null
 		set(value) {
 			if(value!=null) {
@@ -135,4 +144,24 @@ open class RippleButton: TextView, Rippleable {
 		setBackground()
 	}
 
+	private var maskBitmap: Bitmap? = null
+	private val paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+	private val maskPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG).apply { xfermode = PorterDuffXfermode(
+		PorterDuff.Mode.CLEAR) }
+
+	override fun draw(canvas: Canvas) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && forceClipChildren && !isInEditMode) {
+			val offscreenBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+			val offscreenCanvas = Canvas(offscreenBitmap)
+
+			super.draw(offscreenCanvas)
+
+			if (maskBitmap == null) maskBitmap = createMask(width, height)
+
+			offscreenCanvas.drawBitmap(maskBitmap, 0f, 0f, maskPaint)
+			canvas.drawBitmap(offscreenBitmap, 0f, 0f, paint)
+		} else {
+			super.draw(canvas)
+		}
+	}
 }
