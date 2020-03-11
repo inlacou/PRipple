@@ -163,10 +163,12 @@ open class RippleFrameLayout: FrameLayout, Rippleable {
 	}
 
 	override fun draw(canvas: Canvas) {
+		val stroke = 0f//strokeWidth.toFloat()
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && forceClipChildren && !isInEditMode) {
 			canvas.clipPath(Path().apply {
 				addRoundRect(
-					RectF(0f, 0f, width.toFloat(), height.toFloat()), floatArrayOf(
+					RectF(stroke, stroke, width.toFloat()-stroke, height.toFloat()-stroke),
+					floatArrayOf(
 						corners ?: cornerTopLeft,
 						corners ?: cornerTopLeft,
 						corners ?: cornerTopRight,

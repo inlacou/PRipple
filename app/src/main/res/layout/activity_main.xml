@@ -21,6 +21,8 @@
                     app:ripple="@color/basic_black"
                     android:layout_gravity="center"
                     app:forceClipChildren="true"
+                    app:strokeColor="@color/basic_black"
+                    app:strokeWidth="2dp"
                     android:clickable="true"
                     app:corners="200dp">
                 <androidx.recyclerview.widget.RecyclerView

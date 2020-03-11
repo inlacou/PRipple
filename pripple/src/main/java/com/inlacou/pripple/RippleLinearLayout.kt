@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 
 open class RippleLinearLayout: LinearLayout, Rippleable {
@@ -137,16 +136,14 @@ open class RippleLinearLayout: LinearLayout, Rippleable {
 		}
 
 
-	private fun setClickableOverChilds(){
-		(0 .. childCount)
-				.map { getChildAt(it) }
-				.filter { it!=null }
-				.forEach { it.isClickable = false }
+	private fun setClickableOverChildren(){
+		(0..childCount).mapNotNull { getChildAt(it) }
+			.forEach { it.isClickable = false }
 	}
 
 	override fun setBackground() {
 		super<Rippleable>.setBackground()
-		setClickableOverChilds()
+		setClickableOverChildren()
 	}
 
 	override fun setViewBackground(drawable: Drawable) {
