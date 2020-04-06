@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<declare-styleable name="Rippleable">
+		<attr name="clickableOverChildren" format="boolean"/>
 		<attr name="forceClipChildren" format="boolean"/>
 		<attr name="normal" format="color|reference"/>
 		<attr name="ripple" format="color|reference"/>

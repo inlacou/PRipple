@@ -137,15 +137,19 @@ open class RippleFrameLayout: FrameLayout, Rippleable {
 			field = value
 			setBackground()
 		}
-
-
-	private fun setClickableOverChildren() {
-		(0..childCount).mapNotNull { getChildAt(it) }.forEach { it.isClickable = false }
-	}
+	override var clickableOverChildren: Boolean = true
+		set(value) {
+			field = value
+			setBackground()
+		}
 
 	override fun setBackground() {
 		super<Rippleable>.setBackground()
-		setClickableOverChildren()
+		updateClickableOverChildren()
+	}
+
+	private fun updateClickableOverChildren() {
+		(0..childCount).mapNotNull { getChildAt(it) }.forEach { it.isClickable = clickableOverChildren }
 	}
 
 	override fun setViewBackground(drawable: Drawable) {

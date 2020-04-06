@@ -29,12 +29,16 @@ interface Rippleable {
 	var cornerBottomRight: Float
 	var strokeColor: Int?
 	var strokeWidth: Int
+	var clickableOverChildren: Boolean
 
 	fun readAttrs(attrs: AttributeSet) {
 		val ta = viewContext.obtainStyledAttributes(attrs, R.styleable.Rippleable, 0, 0)
 		try {
 			if (ta.hasValue(R.styleable.Rippleable_forceClipChildren)) {
 				forceClipChildren = ta.getBoolean(R.styleable.Rippleable_forceClipChildren, false)
+			}
+			if (ta.hasValue(R.styleable.Rippleable_clickableOverChildren)) {
+				clickableOverChildren = ta.getBoolean(R.styleable.Rippleable_clickableOverChildren, true)
 			}
 			if (ta.hasValue(R.styleable.Rippleable_normal)) {
 				normalColor = ta.getColor(R.styleable.Rippleable_normal, -1)
