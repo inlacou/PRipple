@@ -148,7 +148,7 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	}
 
 	private fun updateClickableOverChildren() {
-		(0..childCount).mapNotNull { getChildAt(it) }.forEach { it.isClickable = clickableOverChildren }
+		(0..childCount).mapNotNull { getChildAt(it) }.forEach { it.isClickable = !clickableOverChildren }
 	}
 
 	override fun setViewBackground(drawable: Drawable) {
