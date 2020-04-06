@@ -33,6 +33,7 @@
 		</attr>
 	</declare-styleable>
 	<declare-styleable name="RippleButton">
+		<attr name="clickableOverChildren"/>
 		<attr name="forceClipChildren"/>
 		<attr name="normal"/>
 		<attr name="ripple"/>
@@ -51,6 +52,7 @@
 		<attr name="gradientType"/>
 	</declare-styleable>
 	<declare-styleable name="RippleFrameLayout">
+		<attr name="clickableOverChildren"/>
 		<attr name="forceClipChildren"/>
 		<attr name="normal"/>
 		<attr name="ripple"/>
@@ -69,6 +71,7 @@
 		<attr name="gradientType"/>
 	</declare-styleable>
 	<declare-styleable name="RippleLinearLayout">
+		<attr name="clickableOverChildren"/>
 		<attr name="forceClipChildren"/>
 		<attr name="normal"/>
 		<attr name="ripple"/>
@@ -87,6 +90,7 @@
 		<attr name="gradientType"/>
 	</declare-styleable>
 	<declare-styleable name="RippleRelativeLayout">
+		<attr name="clickableOverChildren"/>
 		<attr name="forceClipChildren"/>
 		<attr name="normal"/>
 		<attr name="ripple"/>
