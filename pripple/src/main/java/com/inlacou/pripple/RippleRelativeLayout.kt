@@ -9,6 +9,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import java.lang.Exception
+import java.lang.IllegalArgumentException
 
 open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	constructor(context: Context) : super(context)
@@ -141,6 +143,7 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 			field = value
 			setBackground()
 		}
+	override val clickable get() = isClickable
 
 	override fun setBackground() {
 		super<Rippleable>.setBackground()
@@ -180,6 +183,10 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 					), Path.Direction.CW)
 			})
 		}
-		super.draw(canvas)
+		try {
+			super.draw(canvas)
+		}catch (e: IllegalArgumentException) {
+			Log.e("exception on RippleLL", "Data | left: ${0f} top: ${0f} right: ${width.toFloat()} bottom: ${height.toFloat()} | corners topLeft: $cornerTopLeft topRight: $cornerTopRight bottomRight: $cornerBottomRight bottomLeft: $cornerBottomLeft | pathDirection: ${Path.Direction.CW} | Exception: ${e.message}")
+		}
 	}
 }

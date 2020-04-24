@@ -30,6 +30,7 @@ interface Rippleable {
 	var strokeColor: Int?
 	var strokeWidth: Int
 	var clickableOverChildren: Boolean
+	val clickable: Boolean
 
 	fun readAttrs(attrs: AttributeSet) {
 		val ta = viewContext.obtainStyledAttributes(attrs, R.styleable.Rippleable, 0, 0)
@@ -138,18 +139,18 @@ interface Rippleable {
 	}
 
 	fun getRippleDrawable(normalColor: Int, pressedColor: Int? = null, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
-		return buildRippleDrawable(getPlainColorDrawable(normalColor, corners, strokeColor, strokeWidth), pressedColor ?: normalColor, corners, strokeColor, strokeWidth)
+		return buildRippleDrawable(getPlainColorDrawable(normalColor, corners, strokeColor, strokeWidth), pressedColor, corners, strokeColor, strokeWidth)
 	}
 
 	fun getRippleDrawable(colors: List<Int>, orientation: GradientDrawable.Orientation, pressedColor: Int? = null, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
-		return buildRippleDrawable(getGradientColorDrawable(colors, orientation, gradientType, gradientRadius, gradientCenterX, gradientCenterY, corners, strokeColor, strokeWidth), pressedColor ?: colors.first(), corners, strokeColor, strokeWidth)
+		return buildRippleDrawable(getGradientColorDrawable(colors, orientation, gradientType, gradientRadius, gradientCenterX, gradientCenterY, corners, strokeColor, strokeWidth), pressedColor, corners, strokeColor, strokeWidth)
 	}
 
 	fun getRippleDrawable(gradientDrawable: GradientDrawable, normalColor: Int, pressedColor: Int? = null, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
-		return buildRippleDrawable(gradientDrawable, pressedColor ?: normalColor, corners, strokeColor, strokeWidth)
+		return buildRippleDrawable(gradientDrawable, pressedColor, corners, strokeColor, strokeWidth)
 	}
 
-	fun buildRippleDrawable(drawable: Drawable, pressedColor: Int, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
+	fun buildRippleDrawable(drawable: Drawable, pressedColor: Int?, corners: FloatArray, strokeColor: Int?, strokeWidth: Int): Drawable {
 		return if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
 			RippleDrawable(getPressedColorSelector(pressedColor), drawable, null)
 		} else {
@@ -161,18 +162,19 @@ interface Rippleable {
 		}
 	}
 
-	private fun getPressedColorSelector(pressedColor: Int): ColorStateList {
+	private fun getPressedColorSelector(pressedColor: Int?): ColorStateList {
 		return ColorStateList(
-				arrayOf(
-					intArrayOf(android.R.attr.state_pressed),
-					intArrayOf(android.R.attr.state_focused),
-					intArrayOf(android.R.attr.state_activated),
-					intArrayOf()),
-				intArrayOf(
-					pressedColor,
-					pressedColor,
-					pressedColor,
-					pressedColor)
+			arrayOf(
+				intArrayOf(android.R.attr.state_pressed),
+				intArrayOf(android.R.attr.state_focused),
+				intArrayOf(android.R.attr.state_activated),
+				intArrayOf()
+			),
+			if(pressedColor!=null)
+				intArrayOf(pressedColor, pressedColor, pressedColor, pressedColor)
+			else
+				intArrayOf()
+
 		)
 	}
 
