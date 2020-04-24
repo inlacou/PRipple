@@ -6,7 +6,9 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.util.AttributeSet
+import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
+import java.lang.IllegalArgumentException
 
 open class RippleButton: AppCompatTextView, Rippleable {
 	constructor(context: Context) : super(context)
@@ -167,6 +169,10 @@ open class RippleButton: AppCompatTextView, Rippleable {
 					), Path.Direction.CW)
 			})
 		}
-		super.draw(canvas)
+		try {
+			super.draw(canvas)
+		}catch (e: IllegalArgumentException) {
+			Log.e("exception on RippleLL", "Data | left: ${0f} top: ${0f} right: ${width.toFloat()} bottom: ${height.toFloat()} | corners topLeft: $cornerTopLeft topRight: $cornerTopRight bottomRight: $cornerBottomRight bottomLeft: $cornerBottomLeft | pathDirection: ${Path.Direction.CW} | Exception: ${e.message}")
+		}
 	}
 }

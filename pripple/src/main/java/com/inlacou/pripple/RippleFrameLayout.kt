@@ -10,6 +10,8 @@ import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.graphics.Bitmap
 import android.graphics.Paint.FILTER_BITMAP_FLAG
 import android.os.Build
+import android.util.Log
+import java.lang.IllegalArgumentException
 
 open class RippleFrameLayout: FrameLayout, Rippleable {
 	constructor(context: Context) : super(context)
@@ -182,6 +184,10 @@ open class RippleFrameLayout: FrameLayout, Rippleable {
 					), Path.Direction.CW)
 			})
 		}
-		super.draw(canvas)
+		try {
+			super.draw(canvas)
+		}catch (e: IllegalArgumentException) {
+			Log.e("exception on RippleLL", "Data | left: ${0f} top: ${0f} right: ${width.toFloat()} bottom: ${height.toFloat()} | corners topLeft: $cornerTopLeft topRight: $cornerTopRight bottomRight: $cornerBottomRight bottomLeft: $cornerBottomLeft | pathDirection: ${Path.Direction.CW} | Exception: ${e.message}")
+		}
 	}
 }
