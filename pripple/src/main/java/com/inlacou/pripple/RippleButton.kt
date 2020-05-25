@@ -25,14 +25,14 @@ open class RippleButton: AppCompatTextView, Rippleable {
 				setBackground()
 			}
 		}
-	override var normalColor: Int? = null
+	override var normalBackgroundColor: Int? = null
 		set(value) {
 			if(value!=null) {
 				field = value
 				setBackground()
 			}
 		}
-	override var rippleColor: Int? = null
+	override var rippleBackgroundColor: Int? = null
 		set(value) {
 			if(value!=null) {
 				field = value

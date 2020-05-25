@@ -3,8 +3,8 @@
 	<declare-styleable name="Rippleable">
 		<attr name="clickableOverChildren" format="boolean"/>
 		<attr name="forceClipChildren" format="boolean"/>
-		<attr name="normal" format="color|reference"/>
-		<attr name="ripple" format="color|reference"/>
+		<attr name="backgroundNormal" format="color|reference"/>
+		<attr name="backgroundRipple" format="color|reference"/>
 		<attr name="corners" format="dimension|reference"/>
 		<attr name="cornerTopLeft" format="dimension|reference"/>
 		<attr name="cornerTopRight" format="dimension|reference"/>
@@ -32,11 +32,30 @@
 			<enum name="SWEEP_GRADIENT" value="2"/>
 		</attr>
 	</declare-styleable>
+	<declare-styleable name="RippleView">
+		<attr name="clickableOverChildren"/>
+		<attr name="forceClipChildren"/>
+		<attr name="backgroundNormal"/>
+		<attr name="backgroundRipple"/>
+		<attr name="corners"/>
+		<attr name="cornerTopLeft"/>
+		<attr name="cornerTopRight"/>
+		<attr name="cornerBottomLeft"/>
+		<attr name="cornerBottomRight"/>
+		<attr name="strokeColor"/>
+		<attr name="strokeWidth"/>
+		<attr name="gradientColors"/>
+		<attr name="gradientOrientation"/>
+		<attr name="gradientRadius"/>
+		<attr name="gradientCenterX"/>
+		<attr name="gradientCenterY"/>
+		<attr name="gradientType"/>
+	</declare-styleable>
 	<declare-styleable name="RippleButton">
 		<attr name="clickableOverChildren"/>
 		<attr name="forceClipChildren"/>
-		<attr name="normal"/>
-		<attr name="ripple"/>
+		<attr name="backgroundNormal"/>
+		<attr name="backgroundRipple"/>
 		<attr name="corners"/>
 		<attr name="cornerTopLeft"/>
 		<attr name="cornerTopRight"/>
@@ -54,8 +73,8 @@
 	<declare-styleable name="RippleFrameLayout">
 		<attr name="clickableOverChildren"/>
 		<attr name="forceClipChildren"/>
-		<attr name="normal"/>
-		<attr name="ripple"/>
+		<attr name="backgroundNormal"/>
+		<attr name="backgroundRipple"/>
 		<attr name="corners"/>
 		<attr name="cornerTopLeft"/>
 		<attr name="cornerTopRight"/>
@@ -73,8 +92,8 @@
 	<declare-styleable name="RippleLinearLayout">
 		<attr name="clickableOverChildren"/>
 		<attr name="forceClipChildren"/>
-		<attr name="normal"/>
-		<attr name="ripple"/>
+		<attr name="backgroundNormal"/>
+		<attr name="backgroundRipple"/>
 		<attr name="corners"/>
 		<attr name="cornerTopLeft"/>
 		<attr name="cornerTopRight"/>
@@ -92,8 +111,8 @@
 	<declare-styleable name="RippleRelativeLayout">
 		<attr name="clickableOverChildren"/>
 		<attr name="forceClipChildren"/>
-		<attr name="normal"/>
-		<attr name="ripple"/>
+		<attr name="backgroundNormal"/>
+		<attr name="backgroundRipple"/>
 		<attr name="corners"/>
 		<attr name="cornerTopLeft"/>
 		<attr name="cornerTopRight"/>

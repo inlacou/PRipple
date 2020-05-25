@@ -4,16 +4,14 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import android.util.AttributeSet
-import android.widget.FrameLayout
-import android.graphics.Paint.ANTI_ALIAS_FLAG
-import android.graphics.Bitmap
-import android.graphics.Paint.FILTER_BITMAP_FLAG
 import android.os.Build
+import android.util.AttributeSet
 import android.util.Log
+import android.view.View
+import androidx.appcompat.widget.AppCompatTextView
 import java.lang.IllegalArgumentException
 
-open class RippleFrameLayout: FrameLayout, Rippleable {
+open class RippleView: View, Rippleable {
 	constructor(context: Context) : super(context)
 	constructor(context: Context, attrSet: AttributeSet) : super(context, attrSet) { readAttrs(attrSet) }
 	constructor(context: Context, attrSet: AttributeSet, arg: Int) : super(context, attrSet, arg) { readAttrs(attrSet) }
@@ -139,20 +137,9 @@ open class RippleFrameLayout: FrameLayout, Rippleable {
 			field = value
 			setBackground()
 		}
-	override var clickableOverChildren: Boolean = true
-		set(value) {
-			field = value
-			setBackground()
-		}
-
-	override fun setBackground() {
-		super<Rippleable>.setBackground()
-		updateClickableOverChildren()
-	}
-
-	private fun updateClickableOverChildren() {
-		(0..childCount).mapNotNull { getChildAt(it) }.forEach { it.isClickable = !clickableOverChildren }
-	}
+	override var clickableOverChildren: Boolean
+		get() = false
+		set(value) {}
 
 	override fun setViewBackground(drawable: Drawable) {
 		background = drawable
@@ -165,7 +152,6 @@ open class RippleFrameLayout: FrameLayout, Rippleable {
 
 	override fun setDraw(b: Boolean) {
 		setWillNotDraw(b)
-		requestDisallowInterceptTouchEvent(false)
 	}
 
 	override fun draw(canvas: Canvas) {

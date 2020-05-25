@@ -2,20 +2,18 @@ package com.inlacou.pripple
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.*
 import android.graphics.drawable.*
 import android.os.Build
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import androidx.core.view.ViewCompat.setBackground
 
 interface Rippleable {
 
 	val viewContext: Context
 
 	var forceClipChildren: Boolean
-	var normalColor: Int?
-	var rippleColor: Int?
+	var normalBackgroundColor: Int?
+	var rippleBackgroundColor: Int?
 	var gradientColors: List<Int>?
 	var gradientOrientation: GradientDrawable.Orientation?
 	var gradientType: GradientTypes?
@@ -40,11 +38,11 @@ interface Rippleable {
 			if (ta.hasValue(R.styleable.Rippleable_clickableOverChildren)) {
 				clickableOverChildren = ta.getBoolean(R.styleable.Rippleable_clickableOverChildren, true)
 			}
-			if (ta.hasValue(R.styleable.Rippleable_normal)) {
-				normalColor = ta.getColor(R.styleable.Rippleable_normal, -1)
+			if (ta.hasValue(R.styleable.Rippleable_backgroundNormal)) {
+				normalBackgroundColor = ta.getColor(R.styleable.Rippleable_backgroundNormal, -1)
 			}
-			if (ta.hasValue(R.styleable.Rippleable_ripple)) {
-				rippleColor = ta.getColor(R.styleable.Rippleable_ripple, -1)
+			if (ta.hasValue(R.styleable.Rippleable_backgroundRipple)) {
+				rippleBackgroundColor = ta.getColor(R.styleable.Rippleable_backgroundRipple, -1)
 			}
 			if (ta.hasValue(R.styleable.Rippleable_gradientColors)) {
 				gradientColors = ta.resources.getIntArray(ta.getResourceId(R.styleable.Rippleable_gradientColors, -1)).toList()
@@ -109,8 +107,8 @@ interface Rippleable {
 	 * Extreme case. Use at your own risk.
 	 */
 	fun setBackground(gradientDrawable: GradientDrawable) {
-		normalColor?.let { normalColor ->
-			setViewBackground(getRippleDrawable(gradientDrawable, normalColor, rippleColor,
+		normalBackgroundColor?.let { normalColor ->
+			setViewBackground(getRippleDrawable(gradientDrawable, normalColor, rippleBackgroundColor,
 				floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
 					corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
 				strokeColor, strokeWidth))
@@ -118,16 +116,16 @@ interface Rippleable {
 	}
 
 	fun setBackground() {
-		normalColor.let { normalColor ->
+		normalBackgroundColor.let { normalColor ->
 			gradientColors.let { gradientColors ->
 				gradientOrientation.let { gradientOrientation ->
 					if(gradientColors!=null && gradientOrientation!=null && gradientColors.isNotEmpty()) {
-						setViewBackground(getRippleDrawable(gradientColors, gradientOrientation, rippleColor,
+						setViewBackground(getRippleDrawable(gradientColors, gradientOrientation, rippleBackgroundColor,
 							floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
 								corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
 							strokeColor, strokeWidth))
 					}else if(normalColor!=null) {
-						setViewBackground(getRippleDrawable(normalColor, rippleColor,
+						setViewBackground(getRippleDrawable(normalColor, rippleBackgroundColor,
 							floatArrayOf(corners ?: cornerTopLeft, corners ?: cornerTopLeft, corners ?: cornerTopRight, corners ?: cornerTopRight,
 								corners ?: cornerBottomRight, corners ?: cornerBottomRight, corners ?: cornerBottomLeft, corners ?: cornerBottomLeft),
 							strokeColor, strokeWidth))
