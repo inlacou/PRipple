@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PRipple.iml" filepath="$PROJECT_DIR$/.idea/PRipple.iml" group="PRipple" />
-      <module fileurl="file://$PROJECT_DIR$/PRippleExampleProject.iml" filepath="$PROJECT_DIR$/PRippleExampleProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="PRipple/app" />
-      <module fileurl="file://$PROJECT_DIR$/pripple/pripple.iml" filepath="$PROJECT_DIR$/pripple/pripple.iml" group="PRipple/pripple" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PRipple.iml" filepath="$PROJECT_DIR$/.idea/PRipple.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PRipple.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PRipple.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pripple/PRipple.pripple.iml" filepath="$PROJECT_DIR$/.idea/modules/pripple/PRipple.pripple.iml" />
     </modules>
   </component>
 </project>
