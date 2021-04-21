@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PRipple.iml" filepath="$PROJECT_DIR$/.idea/PRipple.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PRipple.iml" filepath="$PROJECT_DIR$/.idea/modules/PRipple.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PRipple.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PRipple.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/pripple/PRipple.pripple.iml" filepath="$PROJECT_DIR$/.idea/modules/pripple/PRipple.pripple.iml" />
     </modules>

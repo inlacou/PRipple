@@ -16,6 +16,7 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 	constructor(context: Context, attrSet: AttributeSet) : super(context, attrSet) { readAttrs(attrSet) }
 	constructor(context: Context, attrSet: AttributeSet, arg: Int) : super(context, attrSet, arg) { readAttrs(attrSet) }
 
+	override var batch: Boolean = false
 	override val viewContext: Context
 		get() = context
 
@@ -158,6 +159,7 @@ open class RippleRelativeLayout: RelativeLayout, Rippleable {
 
 	override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
 		super.onLayout(changed, left, top, right, bottom)
+		Log.d("batch", "onLayout")
 		setBackground()
 	}
 

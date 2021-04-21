@@ -15,6 +15,7 @@ open class RippleButton: AppCompatTextView, Rippleable {
 	constructor(context: Context, attrSet: AttributeSet) : super(context, attrSet) { readAttrs(attrSet) }
 	constructor(context: Context, attrSet: AttributeSet, arg: Int) : super(context, attrSet, arg) { readAttrs(attrSet) }
 
+	override var batch: Boolean = false
 	override val viewContext: Context
 		get() = context
 

@@ -1,8 +1,13 @@
 package com.inlacou.prippleexampleproject
 
-import android.os.Build
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.marginTop
+import androidx.core.view.setPadding
+import com.inlacou.pripple.RippleButton
+import com.inlacou.pripple.batch
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,11 +17,32 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         biggerCircularButton?.setOnClickListener {}
         rbutton_gradient?.setOnClickListener {  }
-    }
 
-    private fun getColorCompat(int: Int): Int {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) resources.getColor(int, null)
-        else resources.getColor(int)
+        //Add View programmatically, in an optimized way
+        ll.addView(RippleButton(context = this).batch {
+            normalBackgroundColor = Color.RED
+            rippleBackgroundColor = Color.WHITE
+            cornerBottomLeft = 16f
+            cornerTopRight = 16f
+            cornerTopLeft = 0f
+            cornerBottomRight = 0f
+            strokeWidth = 4
+            strokeColor = Color.BLACK
+            text = "Programmatically added button"
+            gravity = Gravity.CENTER
+            setPadding(16)
+            isClickable = true
+            setOnClickListener {
+                //Modify view programmatically, in an optimized way
+                this.batch {
+                    normalBackgroundColor = Color.GREEN
+                    rippleBackgroundColor = Color.BLUE
+                    cornerBottomLeft = 16f
+                    cornerTopRight = 16f
+                    cornerTopLeft = 16f
+                    cornerBottomRight = 16f
+                }
+            }
+        })
     }
-
 }

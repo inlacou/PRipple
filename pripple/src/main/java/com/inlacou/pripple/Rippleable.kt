@@ -6,10 +6,14 @@ import android.graphics.drawable.*
 import android.os.Build
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.util.Log
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
 interface Rippleable {
 
 	val viewContext: Context
+	var batch: Boolean
 
 	var forceClipChildren: Boolean
 	var normalBackgroundColor: Int?
@@ -30,6 +34,7 @@ interface Rippleable {
 	var clickableOverChildren: Boolean
 
 	fun readAttrs(attrs: AttributeSet) {
+		batch = true
 		val ta = viewContext.obtainStyledAttributes(attrs, R.styleable.Rippleable, 0, 0)
 		try {
 			if (ta.hasValue(R.styleable.Rippleable_forceClipChildren)) {
@@ -95,9 +100,11 @@ interface Rippleable {
 			}
 		} finally {
 			ta.recycle()
+			batch = false
 		}
 		setDraw(false)
-		setBackground()
+		Log.d("batch", "readAttrs")
+		//setBackground()
 	}
 
 	fun setDraw(b: Boolean)
@@ -116,6 +123,8 @@ interface Rippleable {
 	}
 
 	fun setBackground() {
+		if(batch) return
+		Log.d("batch", "setBackground")
 		normalBackgroundColor.let { normalColor ->
 			gradientColors.let { gradientColors ->
 				gradientOrientation.let { gradientOrientation ->
