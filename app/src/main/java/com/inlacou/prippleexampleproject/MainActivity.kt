@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginTop
 import androidx.core.view.setPadding
 import com.inlacou.pripple.RippleButton
 import com.inlacou.pripple.batch

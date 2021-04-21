@@ -13,6 +13,12 @@ import kotlin.contracts.contract
 interface Rippleable {
 
 	val viewContext: Context
+
+	/**
+	 * Intended for internal use. Use `batch {}` instead.
+	 * Otherwise, use at your own risk.
+	 * This method as true will block any rippleable UI updates.
+	 */
 	var batch: Boolean
 
 	var forceClipChildren: Boolean
@@ -103,7 +109,6 @@ interface Rippleable {
 			batch = false
 		}
 		setDraw(false)
-		Log.d("batch", "readAttrs")
 		//setBackground()
 	}
 
@@ -124,7 +129,6 @@ interface Rippleable {
 
 	fun setBackground() {
 		if(batch) return
-		Log.d("batch", "setBackground")
 		normalBackgroundColor.let { normalColor ->
 			gradientColors.let { gradientColors ->
 				gradientOrientation.let { gradientOrientation ->
