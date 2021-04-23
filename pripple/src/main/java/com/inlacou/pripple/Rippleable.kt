@@ -6,11 +6,8 @@ import android.graphics.drawable.*
 import android.os.Build
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.util.Log
-import kotlin.contracts.InvocationKind
-import kotlin.contracts.contract
 
-interface Rippleable {
+interface Rippleable: BatchEditable {
 
 	val viewContext: Context
 
@@ -19,7 +16,7 @@ interface Rippleable {
 	 * Otherwise, use at your own risk.
 	 * This method as true will block any rippleable UI updates.
 	 */
-	var batch: Boolean
+	override var batchEditing: Boolean
 
 	var forceClipChildren: Boolean
 	var normalBackgroundColor: Int?
@@ -40,7 +37,7 @@ interface Rippleable {
 	var clickableOverChildren: Boolean
 
 	fun readAttrs(attrs: AttributeSet) {
-		batch = true
+		startBatch()
 		val ta = viewContext.obtainStyledAttributes(attrs, R.styleable.Rippleable, 0, 0)
 		try {
 			if (ta.hasValue(R.styleable.Rippleable_forceClipChildren)) {
@@ -106,12 +103,16 @@ interface Rippleable {
 			}
 		} finally {
 			ta.recycle()
-			batch = false
+			dropBatch()
 		}
 		setDraw(false)
 		//setBackground()
 	}
 
+	override fun applyBatch() {
+		batchEditing = false
+		setBackground()
+	}
 	fun setDraw(b: Boolean)
 	fun setViewBackground(drawable: Drawable)
 
@@ -128,7 +129,7 @@ interface Rippleable {
 	}
 
 	fun setBackground() {
-		if(batch) return
+		if(batchEditing) return
 		normalBackgroundColor.let { normalColor ->
 			gradientColors.let { gradientColors ->
 				gradientOrientation.let { gradientOrientation ->

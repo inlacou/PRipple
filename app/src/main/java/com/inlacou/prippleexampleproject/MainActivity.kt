@@ -6,7 +6,7 @@ import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import com.inlacou.pripple.RippleButton
-import com.inlacou.pripple.batch
+import com.inlacou.pripple.batchEdit
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         rbutton_gradient?.setOnClickListener {  }
 
         //Add View programmatically, in an optimized way
-        ll.addView(RippleButton(context = this).batch {
+        ll.addView(RippleButton(context = this).batchEdit {
             normalBackgroundColor = Color.RED
             rippleBackgroundColor = Color.WHITE
             cornerBottomLeft = 16f
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             isClickable = true
             setOnClickListener {
                 //Modify view programmatically, in an optimized way
-                this.batch {
+                this.batchEdit {
                     normalBackgroundColor = Color.GREEN
                     rippleBackgroundColor = Color.BLUE
                     cornerBottomLeft = 16f

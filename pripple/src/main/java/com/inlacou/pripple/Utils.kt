@@ -1,14 +1,12 @@
 package com.inlacou.pripple
 
 import android.content.res.Resources
-import android.util.Log
 
 internal fun Int.dpToPx() = (this * Resources.getSystem().displayMetrics.density).toInt()
 
-fun <T: Rippleable> T.batch(block: T.() -> Unit): T {
-    batch = true
+fun <T: BatchEditable> T.batchEdit(block: T.() -> Unit): T {
+    beginBatch()
     block()
-    batch = false
-    setBackground()
+    applyBatch()
     return this
 }

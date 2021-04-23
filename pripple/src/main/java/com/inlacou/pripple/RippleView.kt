@@ -16,9 +16,9 @@ open class RippleView: View, Rippleable {
 	constructor(context: Context, attrSet: AttributeSet) : super(context, attrSet) { readAttrs(attrSet) }
 	constructor(context: Context, attrSet: AttributeSet, arg: Int) : super(context, attrSet, arg) { readAttrs(attrSet) }
 
-	override var batch: Boolean = false
 	override val viewContext: Context
 		get() = context
+	override var batchEditing: Boolean = false
 
 	override var forceClipChildren: Boolean = false
 		set(value) {
@@ -156,6 +156,7 @@ open class RippleView: View, Rippleable {
 	}
 
 	override fun draw(canvas: Canvas) {
+		//If we are on a good enough Android version, apply the forceClipChildren tag to, well, force clip children views
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && forceClipChildren && !isInEditMode) {
 			canvas.clipPath(Path().apply {
 				addRoundRect(
