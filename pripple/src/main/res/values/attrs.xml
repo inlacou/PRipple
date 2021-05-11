@@ -127,4 +127,23 @@
 		<attr name="gradientCenterY"/>
 		<attr name="gradientType"/>
 	</declare-styleable>
+	<declare-styleable name="RippleImageView">
+		<attr name="clickableOverChildren"/>
+		<attr name="forceClipChildren"/>
+		<attr name="backgroundNormal"/>
+		<attr name="backgroundRipple"/>
+		<attr name="corners"/>
+		<attr name="cornerTopLeft"/>
+		<attr name="cornerTopRight"/>
+		<attr name="cornerBottomLeft"/>
+		<attr name="cornerBottomRight"/>
+		<attr name="strokeColor"/>
+		<attr name="strokeWidth"/>
+		<attr name="gradientColors"/>
+		<attr name="gradientOrientation"/>
+		<attr name="gradientRadius"/>
+		<attr name="gradientCenterX"/>
+		<attr name="gradientCenterY"/>
+		<attr name="gradientType"/>
+	</declare-styleable>
 </resources>

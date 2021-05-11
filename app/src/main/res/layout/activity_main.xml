@@ -185,5 +185,16 @@
                 app:backgroundRipple="@color/basic_red"
                 app:corners="@dimen/general_all"
                 android:text="RADIAL GRADIENT"/>
+        <com.inlacou.pripple.RippleImageView
+                android:id="@+id/rimageview"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="@dimen/general_all_double"
+                app:backgroundNormal="@color/colorPrimary"
+                app:backgroundRipple="@color/colorAccent"
+                app:strokeColor="@color/basic_yellow"
+                app:corners="@dimen/general_all"
+                app:tint="@color/basic_yellow"
+                android:src="@android:drawable/ic_delete"/>
     </LinearLayout>
 </ScrollView>

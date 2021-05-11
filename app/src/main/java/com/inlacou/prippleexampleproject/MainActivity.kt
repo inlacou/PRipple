@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         biggerCircularButton?.setOnClickListener {}
         rbutton_gradient?.setOnClickListener {  }
+        rimageview?.setOnClickListener {  }
 
         //Add View programmatically, in an optimized way
         ll.addView(RippleButton(context = this).batchEdit {
