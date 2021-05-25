@@ -19,6 +19,7 @@ interface Rippleable: BatchEditable {
 	override var batchEditing: Boolean
 
 	var forceClipChildren: Boolean
+	var clickableOverChildren: Boolean
 	var normalBackgroundColor: Int?
 	var rippleBackgroundColor: Int?
 	var gradientColors: List<Int>?
@@ -34,7 +35,26 @@ interface Rippleable: BatchEditable {
 	var cornerBottomRight: Float
 	var strokeColor: Int?
 	var strokeWidth: Int
-	var clickableOverChildren: Boolean
+
+	fun applyMdl(mdl: RippleableMdl) {
+		batchEdit {
+			normalBackgroundColor = mdl.normalBackgroundColor
+			rippleBackgroundColor = mdl.rippleBackgroundColor
+			gradientColors = mdl.gradientColors
+			gradientOrientation = mdl.gradientOrientation
+			gradientType = mdl.gradientType
+			gradientRadius = mdl.gradientRadius
+			gradientCenterX = mdl.gradientCenterX
+			gradientCenterY = mdl.gradientCenterY
+			corners = mdl.corners
+			mdl.cornerTopLeft?.let { cornerTopLeft = it }
+			mdl.cornerTopRight?.let { cornerTopRight = it }
+			mdl.cornerBottomLeft?.let { cornerBottomLeft = it }
+			mdl.cornerBottomRight?.let { cornerBottomRight = it }
+			strokeColor = mdl.strokeColor
+			mdl.strokeWidth?.let { strokeWidth = it }
+		}
+	}
 
 	fun readAttrs(attrs: AttributeSet) {
 		startBatch()

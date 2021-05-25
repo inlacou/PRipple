@@ -17,8 +17,7 @@ open class RippleLinearLayout: LinearLayout, Rippleable {
 	constructor(context: Context, attrSet: AttributeSet, arg: Int) : super(context, attrSet, arg) { readAttrs(attrSet) }
 
 	override var batchEditing: Boolean = false
-	override val viewContext: Context
-		get() = context
+	override val viewContext: Context get() = context
 
 	override var forceClipChildren: Boolean = false
 		set(value) {
