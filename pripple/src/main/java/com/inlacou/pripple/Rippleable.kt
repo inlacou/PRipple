@@ -38,20 +38,20 @@ interface Rippleable: BatchEditable {
 
 	fun applyMdl(mdl: RippleableMdl) {
 		batchEdit {
-			normalBackgroundColor = mdl.normalBackgroundColor
-			rippleBackgroundColor = mdl.rippleBackgroundColor
-			gradientColors = mdl.gradientColors
-			gradientOrientation = mdl.gradientOrientation
-			gradientType = mdl.gradientType
-			gradientRadius = mdl.gradientRadius
-			gradientCenterX = mdl.gradientCenterX
-			gradientCenterY = mdl.gradientCenterY
-			corners = mdl.corners
+			mdl.normalBackgroundColor.let { normalBackgroundColor = it }
+			mdl.rippleBackgroundColor.let { rippleBackgroundColor = it }
+			mdl.gradientColors.let { gradientColors = it }
+			mdl.gradientOrientation.let { gradientOrientation = it }
+			mdl.gradientType.let { gradientType = it }
+			mdl.gradientRadius.let { gradientRadius = it }
+			mdl.gradientCenterX.let { gradientCenterX = it }
+			mdl.gradientCenterY.let { gradientCenterY = it }
+			mdl.corners.let { corners = it }
 			mdl.cornerTopLeft?.let { cornerTopLeft = it }
 			mdl.cornerTopRight?.let { cornerTopRight = it }
 			mdl.cornerBottomLeft?.let { cornerBottomLeft = it }
 			mdl.cornerBottomRight?.let { cornerBottomRight = it }
-			strokeColor = mdl.strokeColor
+			mdl.strokeColor?.let { strokeColor = it }
 			mdl.strokeWidth?.let { strokeWidth = it }
 		}
 	}
