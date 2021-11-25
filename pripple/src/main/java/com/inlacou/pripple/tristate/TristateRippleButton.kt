@@ -3,8 +3,6 @@ package com.inlacou.pripple.tristate
 import android.content.Context
 import android.util.AttributeSet
 import com.inlacou.pripple.RippleButton
-import com.inlacou.pripple.RippleRelativeLayout
-import com.inlacou.pripple.RippleView
 import com.inlacou.pripple.RippleableMdl
 
 open class TristateRippleButton: RippleButton {

@@ -3,7 +3,6 @@ package com.inlacou.pripple.tristate
 import android.content.Context
 import android.util.AttributeSet
 import com.inlacou.pripple.RippleFrameLayout
-import com.inlacou.pripple.RippleLinearLayout
 import com.inlacou.pripple.RippleableMdl
 
 open class TristateRippleFrameLayout: RippleFrameLayout {
