@@ -75,7 +75,7 @@
                 app:strokeColor="@color/basic_black"
                 app:strokeWidth="2dp"
                 android:theme="@style/ButtonTheme"
-                android:text="More corner radius"/>
+                android:text="More corner radius and stroke"/>
         <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/general_all_double"/>
@@ -152,15 +152,16 @@
                 app:backgroundNormal="@color/basic_red"
                 app:backgroundRipple="@color/basic_red_dark"
                 app:corners="500dp">
+
             <TextView
+                    style="@style/ButtonTheme"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Bigger circular button"
-                    style="@style/ButtonTheme"
-                    android:textStyle="bold"
-                    android:textColor="@color/basic_white"
                     android:gravity="center"
-                    android:padding="@dimen/general_all"/>
+                    android:padding="@dimen/general_all"
+                    android:text="Bigger circular button"
+                    android:textColor="@color/basic_white"
+                    android:textStyle="bold" />
         </com.inlacou.pripple.RippleRelativeLayout>
         <com.inlacou.pripple.RippleButton
                 android:id="@+id/rbutton_gradient"
@@ -185,6 +186,12 @@
                 app:backgroundRipple="@color/basic_red"
                 app:corners="@dimen/general_all"
                 android:text="RADIAL GRADIENT"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_all_half"
+                android:layout_marginBottom="@dimen/general_all_half_half"
+                android:text="rippleable imageView:"/>
         <com.inlacou.pripple.RippleImageView
                 android:id="@+id/rimageview"
                 android:layout_width="100dp"
@@ -196,5 +203,31 @@
                 app:corners="@dimen/general_all"
                 app:tint="@color/basic_yellow"
                 android:src="@android:drawable/ic_delete"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_all_half"
+                android:layout_marginBottom="@dimen/general_all_half_half"
+                android:text="force clip children:"/>
+        <com.inlacou.pripple.RippleRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:backgroundNormal="@color/basic_white"
+                app:backgroundRipple="@color/basic_grey"
+                app:strokeColor="@color/basic_black"
+                app:forceClipChildren="true"
+                app:corners="@dimen/general_all">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/basic_red"
+                    android:text="no corner textview with background color"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_centerInParent="true"
+                    android:text="this ripple layout will clip its children (look at the corners)\nIts not correctly displayed on editor"/>
+        </com.inlacou.pripple.RippleRelativeLayout>
     </LinearLayout>
 </ScrollView>
